@@ -32,26 +32,19 @@ const userSchema = new mongoose.Schema({
   timestamps: true
 });
 
-// Hash password before saving
-userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  
-  try {
-    const salt = await bcrypt.genSalt(12);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (error) {
-    next(error);
-  }
+// 🔐 Pre-save middleware: Hash password
+userSchema.pre('save', async function () {
+  // Haddii password la bedelin, hash ma sameynin
+  if (!this.isModified('password')) return;
+
+  const salt = await bcrypt.genSalt(12);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
-// Compare password method
+// 🔎 Compare password method
 userSchema.methods.comparePassword = async function(candidatePassword) {
-  try {
-    return await bcrypt.compare(candidatePassword, this.password);
-  } catch (error) {
-    throw new Error('Password comparison failed');
-  }
+  return await bcrypt.compare(candidatePassword, this.password);
 };
 
+// 📦 Export model
 module.exports = mongoose.model('User', userSchema);

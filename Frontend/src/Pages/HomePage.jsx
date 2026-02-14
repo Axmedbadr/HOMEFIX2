@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Star, Wrench, Zap, Paintbrush, ArrowRight } from 'lucide-react';
 import { getProfessionals, getProfessionalsBySkill } from '../lib/api';
+import '../styles/homepage.css'
+import '../styles/global.css'
+
 
 export function HomePage() {
   const [professionals, setProfessionals] = useState([]);
@@ -210,30 +213,9 @@ export function HomePage() {
                 <li>Plumbing</li>
               </ul>
             </div>
-            <div className="footer-column">
-              <h4 className="font-bold mb-4">About</h4>
-              <ul className="space-y-2 text-blue-200 text-sm">
-                <li>Our Mission</li>
-                <li>How It Works</li>
-                <li>FAQ</li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4 className="font-bold mb-4">Support</h4>
-              <ul className="space-y-2 text-blue-200 text-sm">
-                <li>Contact Us</li>
-                <li>Help Center</li>
-                <li>Terms of Service</li>
-              </ul>
-            </div>
-            <div className="footer-column">
-              <h4 className="font-bold mb-4">Connect</h4>
-              <ul className="space-y-2 text-blue-200 text-sm">
-                <li>Facebook</li>
-                <li>Twitter</li>
-                <li>LinkedIn</li>
-              </ul>
-            </div>
+           
+           
+           
           </div>
           <div className="footer-divider">
             <p className="text-center text-blue-300">

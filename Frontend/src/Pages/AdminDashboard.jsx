@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
+import '../styles/admin-dashboard.css';
+import '../styles/global.css'
 import { 
   LogOut, 
   Plus, 

@@ -10,13 +10,13 @@ export function AppRouter() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route
-         // path="/admin"
+        <Route 
+          path="/admin" 
           element={
             <ProtectedRoute>
               <AdminDashboard />
             </ProtectedRoute>
-          }
+          } 
         />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
-import { Lock, Mail, ArrowLeft, Wrench } from 'lucide-react';
+import { Lock, Mail, ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import '../styles/admin-login.css'
+import '../styles/global.css'
 
 export function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -8,7 +11,8 @@ export function AdminLogin() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { signIn } = useAuth();
+  const { signIn, user } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,12 +21,21 @@ export function AdminLogin() {
 
     try {
       const result = await signIn(email, password);
-      if (!result.success) {
-        setError(result.message);
-        setLoading(false);
+
+      if (result.success) {
+        // ✅ Hubi in role uu yahay admin
+        if (user && user.role === 'admin') {
+          navigate('/admin', { replace: true });
+        } else {
+          setError('You are not authorized to access the admin dashboard');
+        }
+      } else {
+        setError(result.message || 'Invalid credentials');
       }
-    } catch (error) {
+    } catch (err) {
       setError('Network error occurred');
+      console.error(err);
+    } finally {
       setLoading(false);
     }
   };
@@ -38,9 +51,7 @@ export function AdminLogin() {
         <div className="login-card">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="form-group">
-              <label htmlFor="email" className="form-label">
-                Email Address
-              </label>
+              <label htmlFor="email" className="form-label">Email Address</label>
               <div className="input-wrapper">
                 <Mail className="input-icon" />
                 <input
@@ -56,9 +67,7 @@ export function AdminLogin() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
+              <label htmlFor="password" className="form-label">Password</label>
               <div className="input-wrapper">
                 <Lock className="input-icon" />
                 <input
@@ -73,36 +82,22 @@ export function AdminLogin() {
               </div>
             </div>
 
-            {error && (
-              <div className="error-message">
-                {error}
-              </div>
-            )}
+            {error && <div className="error-message">{error}</div>}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="submit-button"
-            >
+            <button type="submit" disabled={loading} className="submit-button">
               {loading ? 'Signing in...' : 'Sign In'}
             </button>
           </form>
 
           <div className="mt-6 pt-6 border-t border-blue-200">
-            <a
-              href="/"
-              className="back-link"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
+            <a href="/" className="back-link">
+              <ArrowLeft className="w-4 h-4" /> Back to Home
             </a>
           </div>
         </div>
 
         <div className="mt-6 text-center">
-          <p className="test-credentials">
-            For testing: Use your admin credentials
-          </p>
+          <p className="test-credentials">For testing: Use your admin credentials</p>
         </div>
       </div>
     </div>
