@@ -69,17 +69,19 @@ router.put('/:id', auth, validateProfessional, handleValidationErrors, async (re
 // @access   Private
 router.delete('/:id', auth, async (req, res) => {
   try {
-    const professional = await Professional.findByIdAndRemove(req.params.id);
+    // Bedel findByIdAndRemove -> findByIdAndDelete
+    const professional = await Professional.findByIdAndDelete(req.params.id);
 
     if (!professional) {
       return res.status(404).json({ msg: 'Professional not found' });
     }
 
-    res.json({ msg: 'Professional removed' });
+    res.status(200).json({ msg: 'Professional removed' });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
+
 
 module.exports = router;

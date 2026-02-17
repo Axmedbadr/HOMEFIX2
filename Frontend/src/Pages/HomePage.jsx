@@ -90,10 +90,10 @@ export function HomePage() {
         <div className="container hero-grid">
           <div>
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 leading-tight">
-              Your Home, Our <span className="text-blue-200">Experts</span>
+              Gurigaa u dir, xirfadlaha <span className="text-blue-200">la hubiyay</span>
             </h2>
             <p className="text-lg text-blue-100 mb-8 leading-relaxed">
-              Connect with trusted home service professionals. Find painters, electricians, and plumbers ready to help with your next project.
+             Ku xidhno Bogeena . Kana Hel Adeega Xirdalayaasha
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -112,22 +112,22 @@ export function HomePage() {
             <div className="hero-card">
               <Paintbrush className="w-8 h-8 text-blue-200 mb-3" />
               <h3 className="font-semibold mb-2">Painting</h3>
-              <p className="text-sm text-blue-100">Professional painting services</p>
+              <p className="text-sm text-blue-100">farshaxanyahan Rinjiila ah</p>
             </div>
             <div className="hero-card">
               <Zap className="w-8 h-8 text-blue-200 mb-3" />
               <h3 className="font-semibold mb-2">Electricity</h3>
-              <p className="text-sm text-blue-100">Expert electrical work</p>
+              <p className="text-sm text-blue-100">Khabiir Dable Ah</p>
             </div>
             <div className="hero-card">
               <Wrench className="w-8 h-8 text-blue-200 mb-3" />
               <h3 className="font-semibold mb-2">Plumbing</h3>
-              <p className="text-sm text-blue-100">Quality plumbing solutions</p>
+              <p className="text-sm text-blue-100">Qasabale Farsamadiisu Sarayso</p>
             </div>
             <div className="hero-card">
               <Star className="w-8 h-8 text-blue-200 mb-3 fill-blue-200" />
-              <h3 className="font-semibold mb-2">Top Rated</h3>
-              <p className="text-sm text-blue-100">Trusted professionals</p>
+              <h3 className="font-semibold mb-2">kuwa ugu shaqada badan</h3>
+              <p className="text-sm text-blue-100">Xirdalayaal lagu kalsoonyahay</p>
             </div>
           </div>
         </div>
@@ -135,8 +135,8 @@ export function HomePage() {
 
       <main className="main-content">
         <div className="mb-12">
-          <h2 className="section-title">Find Your Professional</h2>
-          <p className="section-subtitle">Select a service type to view available professionals</p>
+          <h2 className="section-title">Dooro Xirfadlaha aad doonayso</h2>
+          <p className="section-subtitle">Adeega aad u bahantahay ka xulo </p>
           <div className="skill-buttons">
             {skillButtons.map((button) => (
               <button
@@ -158,7 +158,7 @@ export function HomePage() {
             </div>
           ) : filteredProfessionals.length === 0 ? (
             <div className="no-results">
-              <p>No professionals found for this service.</p>
+              <p>Xirdadle Diyaar ahi ma jiro imika.</p>
             </div>
           ) : (
             <div className="professionals-grid">
@@ -187,11 +187,11 @@ export function HomePage() {
                       </div>
 
                       <div className="contact-section">
-                        <p className="contact-label">Contact Number</p>
+                        <p className="contact-label">Numberka Lagala Xidhiidhayo</p>
                         <p className="phone-number">
                           {professional.phone_number}
                         </p>
-                        <p className="call-note">Manually call this number</p>
+                        <p className="call-note">Toos u Wac Telephonka xirfadlaha</p>
                       </div>
                     </div>
                   </div>
@@ -219,7 +219,7 @@ export function HomePage() {
           </div>
           <div className="footer-divider">
             <p className="text-center text-blue-300">
-              © 2026 Home Services. Connect with trusted professionals.
+              © 2026 Home Services. Target Solutions .
             </p>
           </div>
         </div>
